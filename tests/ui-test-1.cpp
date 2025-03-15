@@ -75,7 +75,7 @@ void test_ui_display_with_vertical_input() {
 }
 
 void test_ui_display_with_horizontal_input() {
-  std::cout << "Testing horizontal win condition..." << std::endl;
+  std::cout << "Testing display with horizontal input play..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui;
   
@@ -91,11 +91,86 @@ void test_ui_display_with_horizontal_input() {
 }
 
 void test_ui_display_with_left_diagonal_input() {
-
+  std::cout << "Testing display with left diagonal input play..." << std::endl;
+  ConnectM connectm(5, 3);
+  UI ui;
+  
+  // Player 1 places three disks in a row
+  connectm.play(1, 3); // Bottom piece
+  
+  connectm.play(2, 2); // Bottom piece
+  connectm.play(1, 2); // Middle piece
+  
+  connectm.play(1, 1); // Bottom piece
+  connectm.play(2, 1);
+  connectm.play(1, 1); // Top piece
+  
+  ui.UIDisplay(connectm.copyGame(), 5);
+  std::cout << "One display with left input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void right() {
+void test_ui_display_with_right_diagonal_input() {
+  std::cout << "Testing displays with right diagonal input play..." << std::endl;
+  ConnectM connectm(5, 3);
+  UI ui;
+  
+  // Set up a board for right diagonal win (down and right)
+  connectm.play(1, 1); // Bottom piece
+  
+  connectm.play(2, 2); // Bottom piece 
+  connectm.play(1, 2); // Middle piece
+  
+  connectm.play(1, 3); // Bottom piece
+  connectm.play(2, 3);
+  connectm.play(1, 3); // Top piece
+  
+  ui.UIDisplay(connectm.copyGame(), 5);
+  std::cout << "One display with right input play: PASS OR FAIL?" << std::endl << std::endl;
+}
 
+void test_ui_display_with_fully_filled_game() {
+  std::cout << "Testing displays with a fully filled input play..." << std::endl;
+  ConnectM connectm(5, 3);
+  UI ui;
+  
+  // Fill the board in a pattern ensuring no winner
+  // First column - fill completely
+  connectm.play(1, 1);
+  connectm.play(2, 1);
+  connectm.play(1, 1);
+  connectm.play(2, 1);
+  connectm.play(1, 1);  // Top row piece
+  
+  // Second column - fill completely
+  connectm.play(2, 2);
+  connectm.play(1, 2);
+  connectm.play(2, 2);
+  connectm.play(1, 2);
+  connectm.play(2, 2);  // Top row piece
+  
+  // Third column - fill completely
+  connectm.play(1, 3);
+  connectm.play(2, 3);
+  connectm.play(1, 3);
+  connectm.play(2, 3);
+  connectm.play(1, 3);  // Top row piece
+  
+  // Fourth column - fill completely
+  connectm.play(2, 4);
+  connectm.play(1, 4);
+  connectm.play(2, 4);
+  connectm.play(1, 4);
+  connectm.play(2, 4);  // Top row piece
+  
+  // Fifth column - fill completely
+  connectm.play(1, 5);
+  connectm.play(2, 5);
+  connectm.play(1, 5);
+  connectm.play(2, 5);
+  connectm.play(1, 5);  // Top row piece
+  
+  ui.UIDisplay(connectm.copyGame(), 5);
+  std::cout << "One display with fully filled input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
 int main() {
@@ -103,6 +178,9 @@ int main() {
   test_multiple_ui_display_no_input();
   test_ui_display_with_vertical_input();
   test_ui_display_with_horizontal_input();
+  test_ui_display_with_left_diagonal_input();
+  test_ui_display_with_right_diagonal_input();
+  test_ui_display_with_fully_filled_game();
 
   return 0;
 }
