@@ -34,7 +34,7 @@ void UI::UIDisplay(int** matrix, int row) { // display the current state of the 
   
 } 
 
-std::string UI::checkPlayerElement(int**& matrix, int i, int j) {
+std::string UI::checkPlayerElement(int**& matrix, int i, int j) { // checks for X, O, ' ' inputs
       if (std::to_string(matrix[i][j]) == "1") {
         return "X";
       }

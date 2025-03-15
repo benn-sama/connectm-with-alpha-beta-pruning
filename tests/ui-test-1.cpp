@@ -3,7 +3,7 @@
 
 #include <cassert>
 
-void test_ui_display_no_input() {
+void test_ui_display_no_input() { // manually check one ui with no input
   std::cout << "Testing one display with no input plays..." << std::endl;
   ConnectM connectm(3, 3);
   UI ui;
@@ -12,7 +12,7 @@ void test_ui_display_no_input() {
   std::cout << "One display with no input: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_multiple_ui_display_no_input() {
+void test_multiple_ui_display_no_input() { // manually check 8 ui with each of them having different sizes and no inputs
   std::cout << "Testing eight displays with no input plays but different sizes..." << std::endl;
   UI ui;
   ConnectM connectm1(1, 1);
@@ -59,7 +59,7 @@ void test_multiple_ui_display_no_input() {
   std::cout << "Eight displays with no input with different sizes: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_ui_display_with_vertical_input() {
+void test_ui_display_with_vertical_input() { // manually check ui with vertical input
   std::cout << "Testing one display with input plays..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui; 
@@ -74,7 +74,7 @@ void test_ui_display_with_vertical_input() {
   std::cout << "One display with vertical input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_ui_display_with_horizontal_input() {
+void test_ui_display_with_horizontal_input() { // manually check ui with horizontal input
   std::cout << "Testing display with horizontal input play..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui;
@@ -90,7 +90,7 @@ void test_ui_display_with_horizontal_input() {
   std::cout << "One display with horizontal input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_ui_display_with_left_diagonal_input() {
+void test_ui_display_with_left_diagonal_input() { // manually check ui with left diagonal input
   std::cout << "Testing display with left diagonal input play..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui;
@@ -109,7 +109,7 @@ void test_ui_display_with_left_diagonal_input() {
   std::cout << "One display with left input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_ui_display_with_right_diagonal_input() {
+void test_ui_display_with_right_diagonal_input() { // manually check ui with right diagonal
   std::cout << "Testing displays with right diagonal input play..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui;
@@ -128,7 +128,7 @@ void test_ui_display_with_right_diagonal_input() {
   std::cout << "One display with right input play: PASS OR FAIL?" << std::endl << std::endl;
 }
 
-void test_ui_display_with_fully_filled_game() {
+void test_ui_display_with_fully_filled_game() { // manually check ui with a tied game
   std::cout << "Testing displays with a fully filled input play..." << std::endl;
   ConnectM connectm(5, 3);
   UI ui;

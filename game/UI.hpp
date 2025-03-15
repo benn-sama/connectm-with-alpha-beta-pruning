@@ -22,7 +22,7 @@ class UI {
   public:
     UI();
     void UIDisplay(int** matrix, int row); // displays the current state of the board
-    std::string checkPlayerElement(int**& matrix, int i, int j);
+    std::string checkPlayerElement(int**& matrix, int i, int j); // checks for X, O, ' ' inputs
 };
 
 #endif
