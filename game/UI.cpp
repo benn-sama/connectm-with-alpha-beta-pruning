@@ -21,8 +21,16 @@ void UI::UIDisplay(int** matrix, int row) { // display the current state of the 
     matrixCopy.append(1, '\n');
     matrixCopy.append(numOfDashesInHorizontalLine, '-');
   }
-  
-  std::cout << std::endl << matrixCopy << std::endl;
+
+  // adds the column numbers at the end of the string
+  matrixCopy.append(1, '\n');  
+  matrixCopy.append("  ");
+  for (short i = 0; i < row; ++i) {
+    matrixCopy.append(std::to_string(i + 1));
+    matrixCopy.append("   ");
+  }
+
+  std::cout << std::endl << matrixCopy << std::endl; // copys the whole matrix
   
 } 
 

@@ -59,9 +59,50 @@ void test_multiple_ui_display_no_input() {
   std::cout << "Eight displays with no input with different sizes: PASS OR FAIL?" << std::endl << std::endl;
 }
 
+void test_ui_display_with_vertical_input() {
+  std::cout << "Testing one display with input plays..." << std::endl;
+  ConnectM connectm(5, 3);
+  UI ui; 
+
+  connectm.play(1, 1);
+  connectm.play(2, 1);
+  connectm.play(1, 1);
+  connectm.play(2, 1);
+  connectm.play(1, 1);
+
+  ui.UIDisplay(connectm.copyGame(), 5);
+  std::cout << "One display with vertical input play: PASS OR FAIL?" << std::endl << std::endl;
+}
+
+void test_ui_display_with_horizontal_input() {
+  std::cout << "Testing horizontal win condition..." << std::endl;
+  ConnectM connectm(5, 3);
+  UI ui;
+  
+  // Player 1 places three disks in a row
+  connectm.play(1, 1);
+  connectm.play(2, 2);
+  connectm.play(1, 3);
+  connectm.play(2, 4);
+  connectm.play(1, 5);
+  
+  ui.UIDisplay(connectm.copyGame(), 5);
+  std::cout << "One display with horizontal input play: PASS OR FAIL?" << std::endl << std::endl;
+}
+
+void test_ui_display_with_left_diagonal_input() {
+
+}
+
+void right() {
+
+}
+
 int main() {
   test_ui_display_no_input();
   test_multiple_ui_display_no_input();
+  test_ui_display_with_vertical_input();
+  test_ui_display_with_horizontal_input();
 
   return 0;
 }
