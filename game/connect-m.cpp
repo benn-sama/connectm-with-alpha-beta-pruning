@@ -27,7 +27,7 @@ void ConnectM::initialize() { // initializes the matrix
   }
 }
 
-bool ConnectM::play(int input, int column) { // inputs the player's move
+bool ConnectM::play(int input, int column) { // inputs the player's move, returns true if column is not full
   column -= 1; // to correctly access the array
 
   if (!this->isColumnFull(column)) { // checks if column is full, if not, place player input
