@@ -23,6 +23,9 @@ make run-main
 ```
 
 ### To clean up directory
+```sh
+make clean
+```
 
 ### Sample Output
 When the game runs, it outputs the current state of the board. For example:
