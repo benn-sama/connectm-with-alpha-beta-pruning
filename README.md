@@ -1,7 +1,5 @@
 # ConnectM Game
 
-[Project 1 Computer Game.pdf](https://github.com/user-attachments/files/18935021/Project.1.Computer.Game.pdf)
-
 ## Overview
 ConnectM is a strategic game played on an M×M grid, where **M** determines the board size. In this game, a human player competes against the computer. The computer leverages an alpha-beta pruning algorithm that evaluates each move by maximizing the number of potential wins it can create.
 
@@ -16,3 +14,30 @@ ConnectM is a strategic game played on an M×M grid, where **M** determines the 
 The tests for this project are located in the `tests` folder. Execute the following command to run all tests:
 ```sh
 make run-test
+```
+
+### To Run the Main Game
+To start the game, use:
+```sh
+make run-main
+```
+
+### Sample Output
+When the game runs, it outputs the current state of the board. For example:
+```sh
+---------------------
+|   |   |   |   |   |
+---------------------
+|   |   |   |   |   |
+---------------------
+| X |   |   |   |   |
+---------------------
+| O | X |   |   |   |
+---------------------
+| X | O | X |   |   |
+---------------------
+  1   2   3   4   5  
+```
+
+### Notes
+This project is a work in progress. Further enhancements and improvements are expected.
