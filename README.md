@@ -22,6 +22,8 @@ To start the game, use:
 make run-main
 ```
 
+### To clean up directory
+
 ### Sample Output
 When the game runs, it outputs the current state of the board. For example:
 ```sh
