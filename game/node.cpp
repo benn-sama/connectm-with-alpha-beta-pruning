@@ -28,3 +28,7 @@ int Node::getUtility() {
 int Node::getWinningCount() {
   return winningCount;
 }
+
+void Node::getCurrentState() {
+    state.displayCurrentGame();
+}

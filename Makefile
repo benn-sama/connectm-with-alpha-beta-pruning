@@ -1,7 +1,7 @@
-HEADERS = game/connect-m.hpp game/game.hpp game/UI.hpp players/computer.hpp players/human.hpp
-TEST_SOURCES = tests/connect-m-test-1.cpp tests/ui-test-1.cpp
+HEADERS = game/connect-m.hpp game/game.hpp game/UI.hpp game/node.hpp players/computer.hpp players/human.hpp 
+TEST_SOURCES = tests/connect-m-test-1.cpp tests/ui-test-1.cpp tests/node-test-1.cpp
 TEST_OBJECTS = $(TEST_SOURCES:.cpp=.o)
-MAIN_SOURCES = main.cpp game/connect-m.cpp game/game.cpp game/UI.cpp players/computer.cpp players/human.cpp
+MAIN_SOURCES = main.cpp game/connect-m.cpp game/game.cpp game/UI.cpp game/node.cpp players/computer.cpp players/human.cpp
 MAIN_OBJECTS = $(MAIN_SOURCES:.cpp=.o)
 TEST_TARGETS = $(TEST_SOURCES:.cpp=.out)
 MAIN_TARGET = connect_m_executable
@@ -13,7 +13,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -I.
 
 all: $(TEST_TARGETS) $(MAIN_TARGET)
 
-$(TEST_TARGETS): %.out: %.o game/connect-m.o game/game.o game/UI.o players/computer.o players/human.o
+$(TEST_TARGETS): %.out: %.o game/connect-m.o game/game.o game/UI.o game/node.o players/computer.o players/human.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(MAIN_TARGET): $(MAIN_OBJECTS)

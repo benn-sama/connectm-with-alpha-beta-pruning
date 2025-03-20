@@ -24,6 +24,7 @@ class Node {
     void addChild(Node* newChild); // adds a child
     int getUtility(); // returns utility
     int getWinningCount(); // returns winningCount
+    void getCurrentState();
 };
 
 #endif
