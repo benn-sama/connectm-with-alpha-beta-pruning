@@ -12,9 +12,9 @@ void Node::addChild(Node* newChild) {
     firstChild = newChild;
   }
   else {
-    Node* sibling = nextSibling; // creates new variable storing nextSibling
+    Node* sibling = firstChild; // start with the first child
 
-    while (sibling->nextSibling) { // cycles through the next sibling until it reaches the last sibling
+    while (sibling->nextSibling) { // cycles through siblings until finding the last one
       sibling = sibling->nextSibling;
     }
     sibling->nextSibling = newChild; // adds the new child on the farthest right
