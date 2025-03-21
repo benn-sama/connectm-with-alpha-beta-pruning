@@ -1,13 +1,12 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 // the "memory" of the computer
-/* Data Structure: First-Child Next-Sibling Representation
+/* Data Structure: First-Child Next-Sibling Tree
             1
           / | \
          2  3  4
         / \
        5   6
-
 */
 #include "connect-m.hpp"
 

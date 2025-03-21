@@ -1,6 +1,8 @@
 #include "./game/node.hpp"
 #include "./game/connect-m.hpp"
-/* This file tests the node class in node.hpp
+/* 
+* This file tests the node class in node.hpp 
+* This uses the First-Child Next Sibling Tree
 */
 #include <iostream>
 
