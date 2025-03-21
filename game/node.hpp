@@ -2,11 +2,11 @@
 #define NODE_HPP
 // the "memory" of the computer
 /* Data Structure: First-Child Next-Sibling Tree
-            1
+            0
           / | \
-         2  3  4
+         1  2  3
         / \
-       5   6
+       4   5
 */
 #include "connect-m.hpp"
 
