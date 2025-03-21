@@ -61,6 +61,16 @@
     "typeinfo": "cpp",
     "unordered_map": "cpp",
     "utility": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "cfenv": "cpp",
+    "charconv": "cpp",
+    "deque": "cpp",
+    "iomanip": "cpp",
+    "numeric": "cpp",
+    "queue": "cpp",
+    "stack": "cpp",
+    "strstream": "cpp",
+    "typeindex": "cpp",
+    "variant": "cpp"
   }
 }
