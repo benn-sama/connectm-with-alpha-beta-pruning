@@ -41,7 +41,7 @@ std::cout << "TESTING: adding_node_0_depth_no_play_return_utility_and_winningCou
   delete root;
 }
 
-void adding_node_1_depth_no_play_return_utility_and_winningCount() {
+void adding_node_1_depth_no_play_return_utility_and_winningCount() { // tests nodes up to the first depth
   std::cout << "TESTING: adding_node_1_depth_no_play_return_utility_and_winningCount()" << std::endl;
   ConnectM connect(5, 3);
   Node* root = new Node(0, 0, connect);
