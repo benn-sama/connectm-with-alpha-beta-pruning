@@ -1,5 +1,5 @@
 HEADERS = game/connect-m.hpp game/game.hpp game/UI.hpp game/node.hpp players/computer.hpp players/human.hpp 
-TEST_SOURCES = tests/connect-m-test-1.cpp tests/ui-test-1.cpp tests/node-test-1.cpp
+TEST_SOURCES = tests/connect-m-test-1.cpp tests/ui-test-1.cpp tests/node-test-1.cpp tests/node-test-2.cpp
 TEST_OBJECTS = $(TEST_SOURCES:.cpp=.o)
 MAIN_SOURCES = main.cpp game/connect-m.cpp game/game.cpp game/UI.cpp game/node.cpp players/computer.cpp players/human.cpp
 MAIN_OBJECTS = $(MAIN_SOURCES:.cpp=.o)
