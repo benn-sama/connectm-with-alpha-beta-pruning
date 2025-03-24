@@ -1,5 +1,4 @@
 #include "./game/node.hpp"
-#include "./game/connect-m.hpp"
 /* 
 * This file tests the node class in node.hpp only adding different utility and winningCount values
 * This file only adds nodes that have no input
@@ -276,10 +275,12 @@ void adding_node_4_depth_no_play_return_utility_and_winningCount() {
 }
 
 int main() {
+  std::cout << "-----------TESTING: TREE WITH ONLY DIFFERENT UTILITY AND WINNING COUNT-----------" << std::endl << std::endl;
   adding_node_0_depth_no_play_return_utility_and_winningCount();
   adding_node_1_depth_no_play_return_utility_and_winningCount();
   adding_node_2_depth_no_play_return_utility_and_winningCount();
   adding_node_3_depth_no_play_return_utility_and_winningCount();
   adding_node_4_depth_no_play_return_utility_and_winningCount();
+    std::cout << "-----------FINISHED: TREE WITH ONLY DIFFERENT UTILITY AND WINNING COUNT-----------" << std::endl << std::endl;
   return 0;
 }
