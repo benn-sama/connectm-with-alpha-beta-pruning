@@ -14,7 +14,7 @@
 
 class Node {
   private:
-    int utility; // if this node is a winner(1), loss(0), or a tie(0.5)
+    int utility; // if this node is a winner(1), loss(-1), tie(0), in-play(2)
     int winningCount; // stores how many potential wins for current move
     ConnectM state; // holds the current state of the board
   public:
