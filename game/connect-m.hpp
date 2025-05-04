@@ -19,11 +19,9 @@ public:
     bool isColumnFull(int column);
 
     bool checkForWinner(int input, int column);
-    bool leftDiagonal(int row, int column, int input);
-    bool rightDiagonal(int row, int column, int input);
-    bool vertical(int row, int column, int input);
-    bool leftHorizontal(int row, int column, int input);
-    bool rightHorizontal(int row, int column, int input);
+    bool leftVertical(int row, int column, int input);
+    bool rightVertical(int row, int column, int input);
+    bool horizontal(int row, int column, int input);
 
     bool checkForDraw();
     int* getSelectedColumn() const { return selectedColumn; }

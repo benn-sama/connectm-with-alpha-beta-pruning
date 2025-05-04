@@ -69,128 +69,82 @@ bool ConnectM::checkForWinner(int input, int column) { // checks for winner
     row = 0;
   }
 
-  if (this->leftDiagonal(row, column, input)) {
+  if (this->horizontal(row, column, input))  {
     return true;
   }
 
-  if (this->rightDiagonal(row, column, input)) {
-    return true;
-  }
-
-  if (this->vertical(row, column, input)) {
-    return true;
-  }
-
-  if (this->leftHorizontal(row, column, input)) {
-    return true;
-  }
-
-  if (this->rightHorizontal(row, column, input)) {
+  if (this->leftVertical(row, column, input)) {
     return true;
   }
 
   return false;
 }
 
-bool ConnectM::leftDiagonal(int row, int column, int input) {// left diagonal winner
-  int j = column;
-  int inputCount = 0;
-
-  for (int i = row; i < this->row && j < this->column; ++i) {
-    if (input == matrix[i][j]) {
-      ++inputCount;
-
-      if (inputCount == winningDiskNum) {
-       return true;
-      }
-    }
-    else {
-      break;
-    }
-    --j;
-  }
-
-  return false;
-}
-
-bool ConnectM::rightDiagonal(int row, int column, int input) { // right diagonal winner
-  int inputCount = 0;
-  int j = column;
-
-  for (int i = row; i < this->row && j < this->column; ++i) {
-    if (input == matrix[i][j]) {
-      ++inputCount;
-
-      if (inputCount == winningDiskNum) {
-        return true;
-      }
-    }
-    else {
-      break;
-    }
-    ++j;
-  }
-
-  return false;
-}
-
-bool ConnectM::vertical(int row, int column, int input) { // vertical check winner
-  int j = column;
-  int inputCount = 0;
-
-  for (int i = row; i < this->row; ++i) {
-    if (input == matrix[i][j]) {
-      ++inputCount;
-      if (inputCount == winningDiskNum) {
-        return true;
-      }
-    }
-    else {
-      break;
-    }
-  }
-
-  return false;
-}
-
-bool ConnectM::leftHorizontal(int row, int column, int input) { // left most horizontal winner
+bool ConnectM::horizontal(int row, int column, int input) {
+  int count = winningDiskNum - 1; 
+  int k = 0;
+  int winningCount = 0;
   int i = row;
-  int inputCount = 0;
-
-  for (int j = column; j >= 0; --j) {
-    if (matrix[i][j] == input) {
-      ++inputCount;
-
-      if (inputCount == winningDiskNum) {
-        return true;
+  
+  while (count >= 0) {
+    for (int j = column - count; j <= column + k; ++j) {
+      if (j >= 0 && j <= this->column) {
+        if (matrix[i][j] == input) {
+          ++winningCount;
+        }
       }
+      std::cout << "[" << i << "]" << "[" << j << "]" << " winningCount: " << winningCount << std::endl;
+    }
+
+    if (winningCount == winningDiskNum) {
+      return true;
     }
     else {
-      break;
+      winningCount = 0;
     }
+    std::cout << "CLEARED\n";
+    --count;
+    ++k;
   }
 
   return false;
 }
 
-bool ConnectM::rightHorizontal(int row, int column, int input) { // right most horizontal winner
-  int i = row;
-  int inputCount = 0;
+bool ConnectM::leftVertical(int row, int column, int input) { // vertical check winner
+  int count = winningDiskNum - 1;
+  int k = 0;
+  int winningCount = 0;
 
-  for (int j = column; j < this->column; ++j) {
-    if (matrix[i][j] == input) {
-      ++inputCount;
-      
-      if (inputCount == winningDiskNum) {
-        return true;
-      }
-    }
-    else {
-      break;
-    }
+  if (row + winningDiskNum - 1 > this->row) {
+    return false;
   }
 
-  return false;
+  while (count >= 0) {
+    int i = row + count;
+    for (int j = column - count; j <= column + k; ++j) {
+      if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) {
+        if (matrix[i][j] == input) {
+          ++winningCount;
+        }
+        std::cout << "[" << i << "]" << "[" << j << "]" << " winningCount: " << winningCount << "; input: " << matrix[i][j] << std::endl;
+      }
+      --i;
+    }
+
+    if (winningCount == winningDiskNum) {
+      return true;
+    }
+    else {
+      winningCount = 0;
+    }
+    std::cout << "CLEARED\n";
+    --count;
+    ++k;
+  }
+}
+
+bool ConnectM::rightVertical(int row, int column, int input) {
+
 }
 
 bool ConnectM::checkForDraw() { // checks for a draw
