@@ -6,6 +6,7 @@ ConnectM::ConnectM(int row, int winningDiskNum) { // default constructor which c
   this->winningDiskNum = winningDiskNum;
 
   this->initialize(); // initializes matrix for connectm game
+  drawCondition = this->column * this->row;
 }
 
 void ConnectM::initialize() { // initializes the matrix
@@ -22,7 +23,7 @@ void ConnectM::initialize() { // initializes the matrix
   // initializes selectedColumn to be the row size
   selectedColumn = new int[row];
 
-  for (int j = 0; j < row; ++j) {
+  for (int j = 0; j < row; ++j) { // filsl the column tracker
     selectedColumn[j] = row - 1;
   }
 }
@@ -33,6 +34,7 @@ bool ConnectM::play(int input, int column) { // inputs the player's move, return
   if (!this->isColumnFull(column)) { // checks if column is full, if not, place player input
     matrix[selectedColumn[column]][column] = input;
     selectedColumn[column] -= 1;
+    ++totalInputs;
     return true;
   }
   else {
@@ -69,40 +71,47 @@ bool ConnectM::checkForWinner(int input, int column) { // checks for winner
     row = 0;
   }
 
-  if (this->horizontal(row, column, input))  {
+  if (this->horizontal(row, column, input))  { // checks for horizontal win condition
     return true;
   }
 
-  if (this->leftVertical(row, column, input)) {
+
+  if (this->leftDiagonal(row, column, input)) { // checks for diagonal win condition (bottom left to top right)
+    return true;
+  }
+
+  if (this->rightDiagonal(row, column, input)) { // checks for diagonal win condition (bottom right to top left)
+    return true;
+  }
+
+  if (this->vertical(row, column, input)) { // checks for vertical win condition
     return true;
   }
 
   return false;
 }
 
-bool ConnectM::horizontal(int row, int column, int input) {
+bool ConnectM::horizontal(int row, int column, int input) { // returns true for vertical win condition
   int count = winningDiskNum - 1; 
   int k = 0;
   int winningCount = 0;
-  int i = row;
-  
-  while (count >= 0) {
+  int const i = row;
+
+  while (count >= 0) { // sliding window algorithm to check win condition
     for (int j = column - count; j <= column + k; ++j) {
-      if (j >= 0 && j <= this->column) {
+      if (j >= 0 && j <= this->column) { // a check here to prevent out of bounds errors
         if (matrix[i][j] == input) {
           ++winningCount;
         }
       }
-      std::cout << "[" << i << "]" << "[" << j << "]" << " winningCount: " << winningCount << std::endl;
     }
 
-    if (winningCount == winningDiskNum) {
+    if (winningCount == winningDiskNum) { // returns true if winning disk number is met
       return true;
     }
     else {
       winningCount = 0;
     }
-    std::cout << "CLEARED\n";
     --count;
     ++k;
   }
@@ -110,56 +119,103 @@ bool ConnectM::horizontal(int row, int column, int input) {
   return false;
 }
 
-bool ConnectM::leftVertical(int row, int column, int input) { // vertical check winner
+bool ConnectM::leftDiagonal(int row, int column, int input) { // returns true for left diagonal win condition
   int count = winningDiskNum - 1;
-  int k = 0;
+  int k = 0; // keeps track of the last cell check
   int winningCount = 0;
+
+  if (row + winningDiskNum - 1 > this->row) { // returns false if row depth is less than winningDiskNum
+    return false;
+  }
+
+  while (count >= 0) { // sliding window algorithm
+    int i = row + count;
+    for (int j = column - count; j <= column + k; ++j) { // actual sliding window algorithm
+      if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) { // checks for out of bounds
+        if (matrix[i][j] == input) {
+          ++winningCount;
+        }
+      }
+      --i;
+    }
+
+    if (winningCount == winningDiskNum) { // returns true if winning disk number is met
+      return true;
+    }
+    else {
+      winningCount = 0;
+    }
+    --count;
+    ++k;
+  }
+  return false;
+}
+
+bool ConnectM::rightDiagonal(int row, int column, int input) { // returns true for right diagonal condition 
+  int count = winningDiskNum - 1;
+  int k = 0; // keeps track of the last cell check
+  int winningCount = 0;
+
+  if (row + winningDiskNum - 1 > this->row) { // returns false if row depth is less than winningDiskNum
+    return false;
+  }
+
+  while (count >= 0) { // sliding window algorithm
+    int i = row + count;
+    for (int j = column + count; j >= column - k; --j) { // actual sliding window algorithm
+      if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) { // a check here to prevent out of bounds errors
+        if (matrix[i][j] == input) {
+          ++winningCount;
+        }
+      }
+      --i;
+    }
+
+    if (winningCount == winningDiskNum) { // returns true if winning disk number is met
+      return true;
+    }
+    else {
+      winningCount = 0;
+    }
+    --count;
+    ++k;
+  }
+  return false;
+}
+
+bool ConnectM::vertical(int row, int column, int input) { // returns true for vertical condition
+  int count = winningDiskNum - 1;
+  int winningCount = 0;
+  int const j = column; // column number never changes because we're only checking the row
 
   if (row + winningDiskNum - 1 > this->row) {
     return false;
   }
 
-  while (count >= 0) {
-    int i = row + count;
-    for (int j = column - count; j <= column + k; ++j) {
-      if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) {
+  while (count >= 0) { // sliding window algorithm
+    for (int i = row + count; i >= column; --i) { // actual sliding window
+      if (i >= 0 && i <= this->column) {
         if (matrix[i][j] == input) {
           ++winningCount;
         }
-        std::cout << "[" << i << "]" << "[" << j << "]" << " winningCount: " << winningCount << "; input: " << matrix[i][j] << std::endl;
       }
-      --i;
     }
 
-    if (winningCount == winningDiskNum) {
+    if (winningCount == winningDiskNum) { // returns true if winning disk number is met
       return true;
     }
     else {
       winningCount = 0;
     }
-    std::cout << "CLEARED\n";
     --count;
-    ++k;
   }
-}
-
-bool ConnectM::rightVertical(int row, int column, int input) {
-
+  return false;
 }
 
 bool ConnectM::checkForDraw() { // checks for a draw
-  int count = 0;
-  for (int j = 0; j < column; ++j) {
-    if (matrix[0][j] == 0) {
-        ++count;
-    }
+  if (totalInputs == drawCondition) { return true; }
 
-    if (count == column) {
-        return false;
-    }
-  }
-
-  return true;
+  return false;
 }
 
 int** ConnectM::copyGame() { // returns a copy of the game matrix for computer
