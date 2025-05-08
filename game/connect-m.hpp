@@ -12,6 +12,8 @@ private:
     int winningDiskNum = 0;
     int totalInputs = 0;
     int drawCondition;
+    int lastColumnPlay = 0;
+    int lastRowPlay = 0;
 
 public:
     ConnectM(int row, int winningDiskNum);
@@ -33,6 +35,8 @@ public:
     int getColumnSize() const { return column; }
     int getRowSize() const { return row; }
     int returnCell(int row, int column);
+    int getLastRowPlay() { return lastRowPlay; }
+    int getLastColumnPlay() { return lastColumnPlay; }
     
     int** copyGame();
     ConnectM(const ConnectM& other); // Copy constructor

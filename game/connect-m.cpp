@@ -32,6 +32,8 @@ bool ConnectM::play(int input, int column) { // inputs the player's move, return
   column -= 1; // to correctly access the array
 
   if (!this->isColumnFull(column)) { // checks if column is full, if not, place player input
+    lastRowPlay = selectedColumn[column];
+    lastColumnPlay = column;
     matrix[selectedColumn[column]][column] = input;
     selectedColumn[column] -= 1;
     ++totalInputs;
@@ -112,6 +114,7 @@ bool ConnectM::horizontal(int row, int column, int input) { // returns true for 
     else {
       winningCount = 0;
     }
+
     --count;
     ++k;
   }
@@ -130,12 +133,14 @@ bool ConnectM::leftDiagonal(int row, int column, int input) { // returns true fo
 
   while (count >= 0) { // sliding window algorithm
     int i = row + count;
+
     for (int j = column - count; j <= column + k; ++j) { // actual sliding window algorithm
       if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) { // checks for out of bounds
         if (matrix[i][j] == input) {
           ++winningCount;
         }
       }
+
       --i;
     }
 
@@ -145,9 +150,11 @@ bool ConnectM::leftDiagonal(int row, int column, int input) { // returns true fo
     else {
       winningCount = 0;
     }
+
     --count;
     ++k;
   }
+
   return false;
 }
 
@@ -162,12 +169,14 @@ bool ConnectM::rightDiagonal(int row, int column, int input) { // returns true f
 
   while (count >= 0) { // sliding window algorithm
     int i = row + count;
+
     for (int j = column + count; j >= column - k; --j) { // actual sliding window algorithm
       if ((j >= 0 && j <= this->column) && (i >= 0 && i <= this->column)) { // a check here to prevent out of bounds errors
         if (matrix[i][j] == input) {
           ++winningCount;
         }
       }
+
       --i;
     }
 
@@ -177,9 +186,11 @@ bool ConnectM::rightDiagonal(int row, int column, int input) { // returns true f
     else {
       winningCount = 0;
     }
+
     --count;
     ++k;
   }
+
   return false;
 }
 
@@ -207,8 +218,10 @@ bool ConnectM::vertical(int row, int column, int input) { // returns true for ve
     else {
       winningCount = 0;
     }
+
     --count;
   }
+
   return false;
 }
 

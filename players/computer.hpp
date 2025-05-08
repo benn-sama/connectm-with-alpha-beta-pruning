@@ -8,9 +8,12 @@ class Computer {
     Node* root;
     int maxDepth; // max depth for alpha beta pruning algorithm
     int winningDiskNum = 0;
+    int columnSize = 0;
+    int rowSize = 0;
+    int input = 0;
   public:
-    Computer(ConnectM connect, int maxDepth, int winningDiskNum); // default constructor
-    int determineWinningCount(ConnectM* connect);  // determines how many ways it can win
+    Computer(ConnectM connect, int maxDepth, int winningDiskNum, int input); // default constructor
+    int determineWinningCount(Node* currentNode);  // determines how many ways it can win
     int actions(ConnectM* connect);  // returns all possible moves the agent can make
     int abSearch(ConnectM* connect); // starts from initial state and tries all possible actions and returns final column play
     int minValue(Node* node, ConnectM* connect, int alpha, int beta); // minimal value
@@ -20,6 +23,7 @@ class Computer {
     int vertical(Node* currentNode, int row, int column, int input); // returns the number of potential wins vertically
     int leftDiagonal(Node* currentNode, int row, int column, int input); // returns the number of potential wins from bottom left to top right
     int rightDiagonal(Node* currentNode, int row, int column, int input); // returns the number of potential wins from bottom right to top left
+    bool outOfBoundsCheck(int index, int maxSize);
     ~Computer(); // destructor
 };
 

@@ -22,6 +22,7 @@ class Node {
     Node* firstChild; // holds the left-most child of this node
     Node* nextSibling; // holds the next right child
     Node(int utility, int winningCount, ConnectM state) : utility(utility), winningCount(winningCount), state(state), parent(nullptr), firstChild(nullptr), nextSibling(nullptr) {} // paramterized constructor
+    void setUtility(int utility) { this->utility = utility; }
     void addChild(Node* newChild); // adds a child
     int getUtility(); // returns utility
     int getWinningCount(); // returns winningCount
