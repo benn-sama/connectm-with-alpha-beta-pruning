@@ -233,6 +233,18 @@ int** ConnectM::copyGame() { // returns a copy of the game matrix for computer
   return copyMatrix;
 }
 
+int ConnectM::returnCell(int row, int column) {
+  if (row >= 0 && row <= this->row) {
+    throw std::runtime_error("ACCESSING ROW OUT OF BOUNDS");
+  }
+
+  if (column >= 0 && column <= this->column) {
+    throw std::runtime_error("ACCESSING COLUMN OUT OF BOUNDS");
+  }
+
+  return matrix[row][column];
+}
+
 ConnectM::ConnectM(const ConnectM& other) {
     // copy primitive members
     this->row = other.row;

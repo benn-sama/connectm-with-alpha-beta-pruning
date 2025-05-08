@@ -30,7 +30,9 @@ public:
     int* getSelectedColumn() const { return selectedColumn; }
     int** getMatrix() const { return matrix; }
     int getBoardSize() const { return row; }
-    int getColumnCount() const { return column; }
+    int getColumnSize() const { return column; }
+    int getRowSize() const { return row; }
+    int returnCell(int row, int column);
     
     int** copyGame();
     ConnectM(const ConnectM& other); // Copy constructor
